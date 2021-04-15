@@ -4,8 +4,20 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 export class Breyer {
-  name: string;
-  number: number;
+  modelname: string = "";
+  modelnumber: number = 0;
+  photo: string = "";
+  photo2: string = "";
+  moldcreated: string = "";
+  notes: string = "";
+  ourbarnname: string = "";
+  realhorse: string = "";
+  sculptor: string = "";
+  series: string = "";
+  set: string = "";
+  wheredidwegetit: string = "";
+  yearobtained: string = "";
+  yearsProduced: string = "";
 }
 
 @Injectable({
@@ -15,13 +27,14 @@ export class HorseListService {
 
   constructor(private http: HttpClient) {}
 
-  getField(entry, field): any {
+  getField(entry, field: string): any {
       try{
-        return entry[`gsx$${field}`]['$t'];
+        return entry[`gsx$${field.toLowerCase()}`]['$t'];
       } catch {
         return 'missing';
       }
   }
+
 
   public getHorses(): Observable<Breyer[]> {
     const sheetid = '1qn74m4DNuvNgrFQSBPBrlbgYZCUwNUpTZOAysFi97CY';
@@ -41,14 +54,9 @@ export class HorseListService {
               const obj : Breyer = new Breyer;
               console.log(entry);
 
-              obj.name = entry['gsx$modelname']['$t']
-              obj.number = entry['gsx$modelnumber']['$t']            
-              /*for (const x in entry) {
-
-                if (x.includes('gsx$') && entry[x].$t) {
-                  obj[x.split('$')[1]] = entry[x]['$t'];
-                }
-              }*/
+              for (const x in obj) {
+                obj[x] = this.getField(entry, x);
+              }
               returnArray.push(obj);
             });
           }
