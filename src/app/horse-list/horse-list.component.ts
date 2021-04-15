@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-horse-list',
   templateUrl: './horse-list.component.html',
-  styleUrls: ['./horse-list.component.css']
+  styleUrls: ['./horse-list.component.scss']
 })
 export class HorseListComponent implements OnInit {
   breyers$: Observable<Breyer[]>;
@@ -17,7 +17,3 @@ export class HorseListComponent implements OnInit {
   }
 
 }
-
-const attributesMapping = {
-  name: 'modelname',
-};
