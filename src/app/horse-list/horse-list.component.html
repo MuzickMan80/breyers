@@ -8,7 +8,20 @@
     <img mat-card-image src="{{ item.photo }}">
     <img *ngIf="item.photo2.length > 0" mat-card-image src="{{ item.photo2 }}">
     <mat-card-content>
-        <p>{{ item.modelnumber }}</p>
+        <p>Our Barn Name: {{ item.ourbarnname }}</p>
+        <p>Model Number: {{ item.modelnumber }}</p>
+        <p>Years Produced: {{ item.yearsProduced }}</p>
+        <p>Real Horse: {{ item.realhorse }}</p>
+        <p>Mold Name: {{ item.moldName }}</p>
+        <p>Mold Number: {{ item.moldNumber }}</p>
+        <p>Mold Created: {{ item.moldcreated }}</p>
+        <p>Sculptor: {{ item.sculptor }}</p>
+        <p>Series: {{ item.series }}</p>
+        <p>Set: {{ item.set }}</p>
+        <p>Year Obtained: {{ item.yearobtained }}</p>
+        <p>Where We Got It: {{ item.wheredidwegetit }}</p>
+        <p>Notes: {{ item.notes }}</p>
+        <a *ngIf="item.link.length > 0" href="{{ item.link }}"><p>Link</p></a>
     </mat-card-content>
 </mat-card>
 </div>

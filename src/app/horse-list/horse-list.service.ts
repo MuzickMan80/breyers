@@ -9,6 +9,8 @@ export class Breyer {
   photo: string = "";
   photo2: string = "";
   moldcreated: string = "";
+  moldName: string = "";
+  moldNumber: string = "";
   notes: string = "";
   ourbarnname: string = "";
   realhorse: string = "";
@@ -18,6 +20,7 @@ export class Breyer {
   wheredidwegetit: string = "";
   yearobtained: string = "";
   yearsProduced: string = "";
+  link: string = "";
 }
 
 @Injectable({
