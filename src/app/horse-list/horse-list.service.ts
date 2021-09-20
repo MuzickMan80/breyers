@@ -30,9 +30,13 @@ export class HorseListService {
 
   constructor(private http: HttpClient) {}
 
-  getField(entry, field: string): any {
+  getField(entry, field: string, headerRow: string): any {
+      const columns = headerRow.split(',').map((col: string) => col.split(' ').join('').toLowerCase());
+      console.log(columns);
       try{
-        return entry[`gsx$${field.toLowerCase()}`]['$t'];
+        const index = columns.indexOf(field);
+        console.log(`${field} => ${index}`);
+        return entry.split(',')[index];
       } catch {
         return 'missing';
       }
@@ -40,25 +44,26 @@ export class HorseListService {
 
 
   public getHorses(): Observable<Breyer[]> {
-    const sheetid = '1qn74m4DNuvNgrFQSBPBrlbgYZCUwNUpTZOAysFi97CY';
-    const sheetno = 1;
     const url = 
-    `https://spreadsheets.google.com/feeds/list/${sheetid}/${sheetno}/public/values?alt=json`;
-  
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vS_nn8F7_ZS8671sQ0nLCt-BniPTQ3RKHZFcJ2KaAyaD-OYZtRbMfEggX0Lb9qE7jw-3pDFI53_yYiA/pub?output=csv'
 
-    return this.http.get(url)
+    return this.http.get(url, {responseType:'text'})
       .pipe(
-        map((res: any) => {
-          const data = res.feed.entry;
+        map((res: string) => {
 
           const returnArray: Array<Breyer> = [];
-          if (data && data.length > 0) {
-            data.forEach(entry => {
+
+          if (res && res.length > 0) {
+            const rows = res.split('\n');
+            const headerRow = res[0];
+            
+            rows.slice(1).forEach(entry => {
+
               const obj : Breyer = new Breyer;
               console.log(entry);
 
               for (const x in obj) {
-                obj[x] = this.getField(entry, x);
+                obj[x] = this.getField(entry, x, headerRow);
               }
               returnArray.push(obj);
             });

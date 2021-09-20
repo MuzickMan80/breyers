@@ -5,3 +5,15 @@
 .content > mat-card {
     width: 200px;
 }
+
+.filters {
+    mat-form-field {
+        div.mat-form-field-flex {
+            align-items: flex-end;
+        }
+
+        div.mat-form-field-prefix {
+            padding-right: 12px !important;
+        }
+    }
+}
