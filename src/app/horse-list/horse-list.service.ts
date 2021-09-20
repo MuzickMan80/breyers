@@ -32,16 +32,18 @@ export class HorseListService {
 
   getField(entry, field: string, headerRow: string): any {
       const columns = headerRow.split(',').map((col: string) => col.split(' ').join('').toLowerCase());
-      console.log(columns);
+
       try{
-        const index = columns.indexOf(field);
-        console.log(`${field} => ${index}`);
+        const index = columns.indexOf(field.toLowerCase());
         return entry.split(',')[index];
       } catch {
         return 'missing';
       }
   }
 
+  public setFilter(filter: string) {
+    
+  }
 
   public getHorses(): Observable<Breyer[]> {
     const url = 
@@ -55,12 +57,11 @@ export class HorseListService {
 
           if (res && res.length > 0) {
             const rows = res.split('\n');
-            const headerRow = res[0];
+            const headerRow = rows[0];
             
             rows.slice(1).forEach(entry => {
 
               const obj : Breyer = new Breyer;
-              console.log(entry);
 
               for (const x in obj) {
                 obj[x] = this.getField(entry, x, headerRow);

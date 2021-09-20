@@ -27,7 +27,8 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 ## Deploying
-
+Install firebase cli (`curl -sL https://firebase.tools | bash`)
+Run `firebase login`
 Run `ng build --prod` to build the production frontend.
 Run `firebase deploy` to push to firebase hosting.
 Open https://breyers.web.app to see it.

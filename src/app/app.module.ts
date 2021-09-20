@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HorseListComponent } from './horse-list/horse-list.component';
 import { HorseListService } from './horse-list/horse-list.service';
+import { HorseListFilterPipe } from "./horse-list/horse-list-filter.pipe";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -25,7 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatIconModule,
     MatFormFieldModule
   ],
-  declarations: [AppComponent, HorseListComponent],
+  declarations: [AppComponent, HorseListComponent, HorseListFilterPipe],
   bootstrap: [AppComponent],
   providers: [HorseListService],
 })

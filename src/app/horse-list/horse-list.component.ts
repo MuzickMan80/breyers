@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HorseListService, Breyer } from './horse-list.service';
 import { Observable } from 'rxjs';
 
@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class HorseListComponent implements OnInit {
   breyers$: Observable<Breyer[]>;
+  @Input() filter!: string;
 
   constructor(private listService: HorseListService) { }
 
